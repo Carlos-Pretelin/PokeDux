@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchBar from './SearchBar'
 import {Col} from "antd";
 import "../styles/App.scss"
@@ -8,15 +8,16 @@ import getPokemon from '../api';
 
 
 const App = () => {
-
+  const [pokemon, setPokemon] = useState([])
 
   useEffect( ()=>{
     const fetchPokemon = async () =>{
-      await getPokemon();
+    const pokeResponse =  await getPokemon();
+    setPokemon(pokeResponse);
     }
 
     fetchPokemon();
-    
+
   }, [])
 
 
@@ -28,7 +29,7 @@ const App = () => {
         <Col span={8} offset={8}>
              <SearchBar/>
         </Col>
-        <PokemonList/>
+        <PokemonList Pokemon={pokemon}/>
         
     </div>
   )

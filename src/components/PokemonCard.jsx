@@ -6,11 +6,11 @@ import "../styles/PokemonCard.scss"
 
 
 
-const PokemonCard = () => {
+const PokemonCard = ({name}) => {
   return (
     <Card
     className='Pokemon-Card'
-    title="Charizard"
+    title={name}
     cover={<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png' alt='charizard'/>}
     extra={<StarOutlined/>}
     >
