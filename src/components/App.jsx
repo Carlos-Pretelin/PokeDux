@@ -5,11 +5,13 @@ import "../styles/App.scss"
 import PokemonList from './PokemonList'
 import logo from "../statics/logo.svg"
 import getPokemon from '../api';
+import { connect, Connect } from 'react-redux';
+import { setPokemon as setPokemonActions } from '../actions';
 
 
-const App = () => {
-  const [pokemon, setPokemon] = useState([])
-
+const App = ({pokemon, setPokemon}) => {
+  
+  console.log(pokemon)
   useEffect( ()=>{
     const fetchPokemon = async () =>{
     const pokeResponse =  await getPokemon();
@@ -35,4 +37,14 @@ const App = () => {
   )
 }
 
-export default App
+const mapStateToProps = (state) => ({
+  pokemon: state.pokemon,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setPokemon: (value) => dispatch(setPokemonActions(value)),
+});
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
