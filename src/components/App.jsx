@@ -15,9 +15,12 @@ const App = () => {
   const pokemon = useSelector(state => state.pokemon)
   const dispatch = useDispatch();
 
+
+
   //console.log(pokemon)
   useEffect( ()=>{
     const fetchPokemon = async () =>{
+      
     const pokeResponse =  await getPokemon();
     dispatch(setPokemon(pokeResponse))
     
