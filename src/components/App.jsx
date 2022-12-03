@@ -4,7 +4,7 @@ import {Col} from "antd";
 import "../styles/App.scss"
 import PokemonList from './PokemonList'
 import logo from "../statics/logo.svg"
-import getPokemon from '../api';
+import {getPokemon, getPokemonDetails} from '../api';
 import { setPokemon  } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -22,7 +22,9 @@ const App = () => {
     const fetchPokemon = async () =>{
       
     const pokeResponse =  await getPokemon();
-    dispatch(setPokemon(pokeResponse))
+    const pokemonDetailed = await Promise.all(pokeResponse.map(pokemon => getPokemonDetails(pokemon)))
+      
+    dispatch(setPokemon(pokemonDetailed))
     
     }
 

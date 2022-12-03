@@ -16,7 +16,8 @@ const root = createRoot(rootElement);
 
 const composedEnhancers = compose(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(logger, featuring)
+    applyMiddleware(logger)
+//    applyMiddleware(logger, featuring)  con esto renderizo a mi custom pokemon
   );
   
   const store = createStore(pokemonReducer, composedEnhancers);
